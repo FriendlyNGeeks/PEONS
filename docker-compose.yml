@@ -9,4 +9,4 @@ services:
       - ./server:/app/server
       - ./build:/app/build
     env_file:
-      - ./.env.development.local
+      - ./.env.production.local
