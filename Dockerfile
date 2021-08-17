@@ -9,4 +9,4 @@ EXPOSE 80
 RUN chown -R node /app
 USER node
 WORKDIR /app/server
-CMD ["npm" "prod"]
+CMD ["npm", "prod"]
