@@ -2,7 +2,7 @@ FROM node:14-alpine
 ENV NODE_ENV=production
 WORKDIR /app
 COPY ./server/package.json ./server
-RUN cd /server
+RUN cd ./app/server
 RUN npm install
 RUN cd ..
 COPY . .
