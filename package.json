@@ -21,7 +21,8 @@
     "eject": "react-scripts eject",
     "start": "yarn run build && (cd server && yarn prod)",
     "build-prod": "env-cmd -f .env.production.local yarn run build && (cd server && yarn prod)",
-    "build-dev": "env-cmd -f .env.development.local yarn run build && (cd server && yarn dev)"
+    "build-dev": "env-cmd -f .env.development.local yarn run build && (cd server && yarn dev)",
+    "portainer": "cd server && yarn prod"
   },
   "eslintConfig": {
     "extends": "react-app",

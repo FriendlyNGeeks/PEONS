@@ -7,4 +7,4 @@ COPY . .
 EXPOSE 80
 RUN chown -R node /app
 USER node
-CMD ["yarn", "prod"]
+CMD ["yarn", "portainer"]
