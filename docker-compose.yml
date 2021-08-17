@@ -2,6 +2,7 @@ version: "2"
 services:
   peons-app:
     build: .
+    container_name: peons
     ports:
       - "80:80"
     volumes:
@@ -10,3 +11,4 @@ services:
       - ./build:/app/build
     env_file:
       - ./.env.production.local
+    restart: always
