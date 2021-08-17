@@ -3,9 +3,10 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY . .
 WORKDIR /app/server
-COPY "./server/package.json" .
-RUN npm install
+RUN npm install --production --silent
+WORKDIR /app
 EXPOSE 80
 RUN chown -R node /app
 USER node
-CMD ["yarn", "prod"]
+WORKDIR /app/server
+CMD "npm start prod"
