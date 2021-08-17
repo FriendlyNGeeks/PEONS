@@ -3,7 +3,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 COPY . /app
 WORKDIR /app/server
-RUN npm install --production
+RUN npm install
 WORKDIR /app
 EXPOSE 80
 RUN chown -R node /app
