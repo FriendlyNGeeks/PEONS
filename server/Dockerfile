@@ -7,6 +7,6 @@ COPY ./server/package.json ./server/package-lock.json* ./
 RUN npm install
 ENV NODE_ENV=production
 USER node
-COPY . ./
+COPY ./server ./
 EXPOSE 80
 CMD ["npm", "start"]
