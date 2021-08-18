@@ -16,13 +16,12 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build ./server",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "cd ./server && npm run-script start --scripts-prepend-node-path",
+    "start": "cd ./server && npm run-script dev",
     "build-prod": "env-cmd -f .env.production.local yarn run build && (cd server && yarn prod)",
-    "build-dev": "env-cmd -f .env.development.local yarn run build && (cd server && yarn dev)",
-    "portainer": "cd server && yarn prod"
+    "build-dev": "env-cmd -f .env.development.local yarn run build && (cd server && yarn dev)"
   },
   "eslintConfig": {
     "extends": "react-app",

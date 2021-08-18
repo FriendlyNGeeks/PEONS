@@ -7,10 +7,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./server:/app/server
-      - ./build:/app/build
+      - ./:/app
     env_file:
-      - ./.env.production.local
+      - ../.env.production.local
 volumes:
   general:
     driver: local
