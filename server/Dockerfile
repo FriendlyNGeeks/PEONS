@@ -6,9 +6,8 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 COPY ./server/package.json ./server/package-lock.json* ./
 RUN npm install
 ENV NODE_ENV=production
-USER node
 COPY ./server ./
 EXPOSE 80
-RUN chmod +x /usr/src/server/node_modules/.bin/nodemon
+# RUN chmod +x /usr/src/server/node_modules/.bin/nodemon
 CMD ["yarn", "prod"]
 
