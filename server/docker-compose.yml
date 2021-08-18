@@ -7,6 +7,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/app
+      - ./server:/app
     env_file:
       - ../.env.production.local
