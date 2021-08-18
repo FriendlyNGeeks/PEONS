@@ -5,7 +5,7 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 ENV NODE_ENV=production
 WORKDIR /server
 RUN echo copying
-COPY [package.json, package*.json] ./
+COPY ["./server/package.json", "./server/package-lock.json"] ./
 RUN echo install
 RUN npm install
 COPY . .
