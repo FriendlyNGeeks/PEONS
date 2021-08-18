@@ -7,7 +7,7 @@ RUN npm install
 ENV NODE_ENV=production
 COPY ./server ./
 EXPOSE 80
-RUN chown -R node:node /usr/src/server
-RUN chmod 755 /usr/src/server
-USER node
-CMD ["yarn", "prod"]
+# RUN chown -R node:node /usr/src/server
+# RUN chmod 755 /usr/src/server
+# USER node
+CMD ["yarn", "port"]
