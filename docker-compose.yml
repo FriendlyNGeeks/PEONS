@@ -7,7 +7,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./src:/app/src
       - ./server:/app/server
       - ./build:/app/build
     env_file:
