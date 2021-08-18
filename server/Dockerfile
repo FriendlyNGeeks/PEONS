@@ -6,7 +6,7 @@ WORKDIR /server
 COPY package.json package-lock.json* ./
 RUN npm install
 ENV NODE_ENV=production
-COPY . /server
+COPY --chown=node:node . /server
 EXPOSE 80
 USER node
 # RUN chown -R node /server
