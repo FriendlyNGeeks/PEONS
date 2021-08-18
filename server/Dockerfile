@@ -9,5 +9,5 @@ ENV NODE_ENV=production
 COPY . /server
 EXPOSE 80
 USER node
-RUN chown -R node /server
+# RUN chown -R node /server
 CMD ["npm", "start"]
