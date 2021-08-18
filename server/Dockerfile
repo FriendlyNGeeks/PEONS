@@ -4,10 +4,10 @@ LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 ENV NODE_ENV=production
 WORKDIR /server
+USER node
 COPY package.json ./
 RUN npm install
-COPY . .
+COPY . /server
 EXPOSE 80
-# RUN chown -R node /server
-# USER node
+RUN chown -R node .
 CMD ["npm", "start"]
