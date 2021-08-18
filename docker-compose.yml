@@ -3,7 +3,9 @@ services:
   peons:
     image: friendlyngeeks/peons-rpi:latest
     container_name: peons
-    build: .
+    build:
+      context: server
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
