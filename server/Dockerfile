@@ -7,7 +7,7 @@ COPY package.json package-lock.json* ./
 RUN npm install
 ENV NODE_ENV=production
 COPY . /server
-USER node
 EXPOSE 80
-RUN chown -R node .
+USER node
+RUN chown -R node /server
 CMD ["npm", "start"]
