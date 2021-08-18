@@ -4,9 +4,9 @@ LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 ENV NODE_ENV=production
 WORKDIR /app
-COPY package*.json ./
+COPY ./server/package*.json ./
 RUN npm install --production
-COPY . ./
+COPY . .
 # WORKDIR /app
 # RUN npm install
 EXPOSE 80
