@@ -12,5 +12,5 @@ services:
       - ./server:/usr/src/server
     env_file:
       - ./.env.production.local
-    network_mode: host
+    network_mode: bridge
     privileged: true
