@@ -6,7 +6,7 @@ COPY ./server/package.json ./server/package-lock.json* ./
 RUN npm install --production
 ENV NODE_ENV=production
 COPY ./server ./
-EXPOSE 80
+EXPOSE 8080
 # RUN chown -R node:node /usr/src/server
 # RUN chmod 755 /usr/src/server
 # USER node
