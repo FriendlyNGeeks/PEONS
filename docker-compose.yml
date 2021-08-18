@@ -9,6 +9,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/server
+      - ./:/usr/src/server
     env_file:
       - ./.env.production.local
