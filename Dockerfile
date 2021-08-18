@@ -7,7 +7,7 @@ WORKDIR /app
 RUN echo copying
 COPY ./server/package.json /app
 RUN echo install
-RUN npm install --production
+RUN npm install
 COPY . .
 # WORKDIR /app
 # RUN npm install
