@@ -8,7 +8,7 @@ RUN echo copying
 COPY ./package*.json ./
 RUN echo install
 RUN npm install --production
-COPY .. ..
+COPY . .
 # WORKDIR /app
 # RUN npm install
 EXPOSE 80
