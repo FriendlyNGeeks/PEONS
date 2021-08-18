@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -r dotenv-flow/config server.js --node-env=development --dotenv-flow-path=../",
-    "start": "nodemon -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../"
+    "start": "node -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../"
   },
   "dependencies": {
     "dotenv-flow": "^3.2.0",
