@@ -12,3 +12,4 @@ services:
       - ./server:/usr/src/server
     env_file:
       - ./.env.production.local
+    network_mode: bridge
