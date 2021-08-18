@@ -9,4 +9,6 @@ ENV NODE_ENV=production
 USER node
 COPY ./server ./
 EXPOSE 80
+RUN chmod +x /usr/src/server/node_modules/.bin/nodemon
 CMD ["yarn", "prod"]
+
