@@ -6,8 +6,9 @@ ENV NODE_ENV=production
 WORKDIR /server
 COPY /server/package.json ./
 RUN npm install
-COPY ./server .
+COPY ./server ./
 EXPOSE 80
 RUN chown -R node /server
 USER node
+WORKDIR /
 CMD ["npm", "start"]
