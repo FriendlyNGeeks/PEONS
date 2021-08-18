@@ -3,14 +3,12 @@ LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 ENV NODE_ENV=production
-WORKDIR /app
+WORKDIR /server
 RUN echo copying
-COPY ./server/package.json /app
+COPY [package.json, package*.json] ./
 RUN echo install
 RUN npm install
 COPY . .
-# WORKDIR /app
-# RUN npm install
 EXPOSE 80
 # RUN chown -R node /app
 # USER node
