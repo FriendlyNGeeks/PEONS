@@ -9,5 +9,5 @@ WORKDIR '/app'
 EXPOSE 80
 # RUN chown -R node /app
 USER node
-RUN npm run start
-# CMD ["yarn", "start"]
+# RUN npm run start
+CMD ["yarn", "start"]
