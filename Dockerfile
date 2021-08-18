@@ -1,12 +1,13 @@
 FROM node:14-alpine
 ENV NODE_ENV=production
-WORKDIR /app
-COPY . /app
-WORKDIR /app/server
+WORKDIR '/app'
+COPY . .
+WORKDIR '/app/server'
 RUN npm install
-WORKDIR /app
+WORKDIR '/app'
 # RUN npm install
 EXPOSE 80
-RUN chown -R node /app
+# RUN chown -R node /app
 USER node
-CMD ["yarn", "start"]
+RUN npm run start
+# CMD ["yarn", "start"]

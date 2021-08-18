@@ -1,8 +1,9 @@
 version: "2"
 services:
-  peons-app:
-    build: .
+  peons:
+    image: friendlyngeeks/peons-rpi:latest
     container_name: peons
+    build: .
     ports:
       - "80:80"
     volumes:
@@ -11,3 +12,6 @@ services:
       - ./build:/app/build
     env_file:
       - ./.env.production.local
+volumes:
+  general:
+    driver: local
