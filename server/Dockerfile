@@ -5,7 +5,7 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 ENV NODE_ENV=production
 WORKDIR /app
 RUN echo copying
-COPY ./server/package*.json ./
+COPY ./server/package.json ./
 RUN echo install
 RUN npm install --production
 COPY . .
