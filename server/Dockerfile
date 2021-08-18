@@ -9,4 +9,4 @@ ENV NODE_ENV=production
 USER node
 COPY ./server ./
 EXPOSE 80
-CMD ["npm", "start"]
+CMD ["yarn", "prod"]
