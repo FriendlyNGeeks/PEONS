@@ -5,8 +5,8 @@ COPY . /app
 WORKDIR /app/server
 RUN npm install
 WORKDIR /app
+# RUN npm install
 EXPOSE 80
 RUN chown -R node /app
 USER node
-WORKDIR /app/server
-CMD ["yarn", "prod"]
+CMD ["yarn", "start"]

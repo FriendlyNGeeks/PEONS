@@ -11,4 +11,3 @@ services:
       - ./build:/app/build
     env_file:
       - ./.env.production.local
-    restart: always
