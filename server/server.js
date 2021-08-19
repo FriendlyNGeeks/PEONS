@@ -46,10 +46,12 @@ app.use(express.static("public"))
 // PRODUCTION
 
 app.get('/', (req, res) => {
+  console.log("request received /home");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
 app.get('/admin*', (req, res) => {
+  console.log("request received /admin");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
