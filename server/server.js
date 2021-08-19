@@ -46,12 +46,12 @@ app.use(express.static("public"))
 // PRODUCTION
 
 app.get('/', (req, res) => {
-  console.log("request received /home");
+  console.log("http request received /home");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
 app.get('/admin*', (req, res) => {
-  console.log("request received /admin");
+  console.log("http request received /admin");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
@@ -78,7 +78,7 @@ var server = app.listen(settings.SERVER_PORT, () => {
 //------------------- socket setup
 ///////////////////////////////////////////////////////////////////////
 
-var io = socket(server)
+var io = socket(server,{allowEIO3: true})
 
 io.on('connection', (socket) => {
     if (socket.handshake.query.clientid) {
@@ -89,14 +89,14 @@ io.on('connection', (socket) => {
             'Username': socket.handshake.query.clientid,
             'Section' : socket.handshake.query.section
         }
-        if (!clientTable.some(e => e.Username === socket.handshake.query.clientid) && socket.handshake.query.adminid !== "pi"){
+        if (!clientTable.some(e => e.Username === socket.handshake.query.clientid) && socket.handshake.query.adminid != "pi"){
             var currentClient = socket.handshake.query.clientid
             clientTable.push(client)
             console.log("server.js => ", JSON.stringify(clientTable))
         }
         io.sockets.emit('connectionMade', clientTable, currentClient)
     }
-    else if (socket.handshake.query.adminid === "pi" && socket.handshake.query.hangup === 1) {
+    else if (socket.handshake.query.adminid == "pi" && socket.handshake.query.hangup == 1) {
         console.log("server.js => CLIENT CONNECTED: Admin")
         io.sockets.emit('connectionAdmin', clientTable)
     }
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
         console.log("server.js => CLIENT DISCONNECTED: " + socket.handshake.query.clientid)
         io.sockets.emit('connectionLost', clientTable, currentClient)
       }
-      else if(socket.handshake.query.adminid === "pi") {
+      else if(socket.handshake.query.adminid == "pi") {
         console.log("server.js => CLIENT DISCONNECTED: Admin")
       }
   })
