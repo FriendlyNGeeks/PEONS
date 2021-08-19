@@ -24,11 +24,14 @@
     "build-dev": "env-cmd -f .env.development.local yarn run build && (cd server && yarn dev)"
   },
   "eslintConfig": {
-    "extends": "react-app",
+    "extends": ["react-app"],
     "plugins": [
       "jsx-a11y"
     ],
     "rules": {
+      "eqeqeq":"off",
+      "no-undef": "off",
+      "no-unused-vars": "off",
       "jsx-a11y/href-no-hash": "off",
       "jsx-a11y/anchor-is-valid": [
         "warn",
