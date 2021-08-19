@@ -64,7 +64,7 @@ app.get('/admin*', (req, res) => {
 //---------------------- ACTIVATE SERVER 
 ///////////////////////////////////////////////////////////////////////
 
-var server = app.listen(settings.SERVER_PORT, () => {
+var server = app.listen(settings.SERVER_PORT, "0.0.0.0", () => {
   console.log("server.js => ", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
 })
 
