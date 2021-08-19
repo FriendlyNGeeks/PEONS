@@ -11,4 +11,4 @@ COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
-# CMD ["yarn", "port"]
+CMD ["yarn", "port"]
