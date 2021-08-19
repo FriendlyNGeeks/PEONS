@@ -36,9 +36,7 @@ for (const name of Object.keys(nets)) {
 console.log("server.js => ", results)
 
 // add middlewares
-// app.use(cors())
 app.use(express.static(path.join(__dirname, ".", "build")))
-app.use(express.static("public"))
 
 ////////////////////////////////////////////
 //-------- USED TO REDIRECT ALL REQUEST TO INDEX FOR REACT ROUTER
