@@ -7,9 +7,10 @@ services:
       context: .
       dockerfile: ./server/Dockerfile
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - ./server:/usr/src/server
     env_file:
       - ./.env.production.local
+    network_mode: host
     privileged: true
