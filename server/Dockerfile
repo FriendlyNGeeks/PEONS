@@ -1,4 +1,4 @@
-FROM node:14.15.1
+FROM node:14.15.1-alpine
 LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
@@ -7,4 +7,8 @@ RUN npm install --production
 ENV NODE_ENV=production
 COPY ./server ./
 EXPOSE 80
-CMD ["yarn", "port"]
+COPY ./server/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+# CMD ["yarn", "port"]
