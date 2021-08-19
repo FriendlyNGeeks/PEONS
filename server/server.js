@@ -69,9 +69,9 @@ var server = app.listen(settings.SERVER_PORT, "0.0.0.0", () => {
 })
 
 //---------PROTOTYPE SEVER REBOOT
-function severReboot() {
-    server.close()
-}
+// function severReboot() {
+//     server.close()
+// }
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -89,14 +89,14 @@ io.on('connection', (socket) => {
             'Username': socket.handshake.query.clientid,
             'Section' : socket.handshake.query.section
         }
-        if (!clientTable.some(e => e.Username === socket.handshake.query.clientid) && socket.handshake.query.adminid != "pi"){
+        if (!clientTable.some(e => e.Username === socket.handshake.query.clientid) && socket.handshake.query.adminid !== "pi"){
             var currentClient = socket.handshake.query.clientid
             clientTable.push(client)
             console.log("server.js => ", JSON.stringify(clientTable))
         }
         io.sockets.emit('connectionMade', clientTable, currentClient)
     }
-    else if (socket.handshake.query.adminid == "pi" && socket.handshake.query.hangup == 1) {
+    else if (socket.handshake.query.adminid === "pi" && socket.handshake.query.hangup === 1) {
         console.log("server.js => CLIENT CONNECTED: Admin")
         io.sockets.emit('connectionAdmin', clientTable)
     }
@@ -109,7 +109,7 @@ io.on('connection', (socket) => {
         console.log("server.js => CLIENT DISCONNECTED: " + socket.handshake.query.clientid)
         io.sockets.emit('connectionLost', clientTable, currentClient)
       }
-      else if(socket.handshake.query.adminid == "pi") {
+      else if(socket.handshake.query.adminid === "pi") {
         console.log("server.js => CLIENT DISCONNECTED: Admin")
       }
   })
