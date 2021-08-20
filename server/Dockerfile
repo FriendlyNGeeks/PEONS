@@ -5,8 +5,8 @@ LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 WORKDIR /usr/src/server
-RUN ls
 COPY ./server/package.json ./
+RUN ls
 # RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
@@ -28,4 +28,4 @@ EXPOSE 80
 
 STOPSIGNAL SIGQUIT
 
-CMD ["node", "start" "--production"]
+# CMD ["node", "start" "--production"]
