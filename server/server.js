@@ -65,7 +65,8 @@ app.get('/admin*', (req, res) => {
 ///////////////////////////////////////////////////////////////////////
 
 const server = app.listen(settings.SERVER_PORT, '0.0.0.0', () => {
-  console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
+  // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
+  console.log("server.js =>", "Server running @ "+ settings.SERVER_IP + ":" + settings.SERVER_PORT + '!')
 })
 
 //---------PROTOTYPE SEVER REBOOT
