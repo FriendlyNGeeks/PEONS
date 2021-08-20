@@ -6,7 +6,7 @@ LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 # WORKDIR /usr/src/server
 COPY ./server/package.json ./
-RUN echo "foundme" && ls
+RUN ls
 # RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
