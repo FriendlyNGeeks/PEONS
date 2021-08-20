@@ -9,7 +9,7 @@ services:
     volumes:
       - ./:/server
     ports:
-      - 80:80
+      - 80:7000
     env_file:
       - ./.env.production.local
     network_mode: host

@@ -23,7 +23,7 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # WORKDIR /app
 ENTRYPOINT ["/entrypoint.sh"]
 
-EXPOSE 80
+EXPOSE 7000
 
 
 STOPSIGNAL SIGQUIT

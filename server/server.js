@@ -46,14 +46,14 @@ app.use(express.static(path.join(__dirname, ".", "build")))
 // PRODUCTION
 
 app.get('/', (req, res) => {
-  console.log("server.js => http request received /home");
+  console.log("server.js => http request received");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
-app.get('/admin*', (req, res) => {
-  console.log("server.js => http request received /admin");
-  res.sendFile(path.join(__dirname, ".", "build", "index.html"));
-});
+// app.get('/admin*', (req, res) => {
+//   console.log("server.js => http request received /admin");
+//   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
+// });
 
 // app.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
