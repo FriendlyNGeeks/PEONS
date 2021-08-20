@@ -13,7 +13,7 @@ ENV NODE_ENV=production
 COPY ./server/server.js ./
 COPY ./server/yarn.lock ./
 COPY ./server/build ./build
-RUN chmod +x /usr/src/server
+# RUN chmod +x /usr/src/server
 COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
@@ -21,7 +21,7 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # CMD ["supervisor", "/server.js"]
 # RUN yarn
 # RUN yarn add global nodemon
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
 
