@@ -8,7 +8,8 @@ COPY ./server/package.json ./
 RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
-COPY ./server/server.js ./server/yarn.lock ./server/build ./
+COPY ./server/server.js ./server/yarn.lock ./
+COPY ./server/build ./build
 COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
