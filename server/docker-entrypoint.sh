@@ -4,5 +4,5 @@
 # cd /usr/src/server/node_modules/
 ls
 # node_modules/nodemon server.js
-node start
+node run start
 # chmod +x /usr/src/server/node_modules/.bin/nodemon
