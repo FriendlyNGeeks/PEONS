@@ -14,4 +14,5 @@ EXPOSE 80
 # USER node
 # ENTRYPOINT ["/entrypoint.sh"]
 # CMD ["supervisor", "/server.js"]
-CMD ["nodeamon=true","yarn", "port"]
+RUN chmod +x /usr/src/server/node_modules/.bin/nodemon
+CMD ["yarn", "port"]
