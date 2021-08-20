@@ -7,11 +7,11 @@ COPY ./server/package.json ./server/package-lock.json* ./
 RUN npm install --production
 ENV NODE_ENV=production
 COPY ./server ./
-COPY ./server/docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
+# COPY ./server/docker-entrypoint.sh /usr/local/bin/
+# RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 EXPOSE 80
-USER node
+# USER node
 # ENTRYPOINT ["/entrypoint.sh"]
-CMD ["supervisor", "/server.js"]
-# CMD ["nodeamon=true","yarn", "port"]
+# CMD ["supervisor", "/server.js"]
+CMD ["nodeamon=true","yarn", "port"]
