@@ -17,4 +17,4 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # RUN yarn add global nodemon
 EXPOSE 80
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["yarn", "port"]
+CMD ["yarn", "start"]
