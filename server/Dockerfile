@@ -20,8 +20,7 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # CMD ["supervisor", "/server.js"]
 # RUN yarn
 # RUN yarn add global nodemon
-# WORKDIR /usr/src/server
-RUN ls
+# WORKDIR /app
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
