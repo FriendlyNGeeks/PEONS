@@ -12,4 +12,4 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 EXPOSE 80
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["yarn", "port"]
+CMD ["nodeamon=true","yarn", "port"]
