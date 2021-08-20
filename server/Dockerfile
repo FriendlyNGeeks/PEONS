@@ -4,16 +4,16 @@ ENV DEBUG=*
 LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
-WORKDIR /usr/src/server
-COPY ./package.json ./
+# WORKDIR /usr/src/server
+COPY ./package.json ./usr/src/server
 RUN echo "foundme" && ls
 # RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
-COPY ./server/server.js ./
-COPY ./server/yarn.lock ./
+COPY ./server/server.js ./usr/src/server
+COPY ./server/yarn.lock ./usr/src/server
 COPY ./server/build ./usr/src/server/build
-RUN chmod +x ./
+RUN chmod +x ./usr/src/server
 COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
