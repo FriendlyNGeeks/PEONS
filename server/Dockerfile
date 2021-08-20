@@ -7,7 +7,7 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 WORKDIR /usr/src/server
 RUN ls
 COPY ./server/package.json ./
-RUN npm install --production
+# RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
 COPY ./server/server.js ./
@@ -21,7 +21,7 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # CMD ["supervisor", "/server.js"]
 # RUN yarn
 # RUN yarn add global nodemon
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
 
