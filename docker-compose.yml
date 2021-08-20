@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./server/Dockerfile
     volumes:
-      - ./:/app
+      - ./:/server
     ports:
       - 80:80
     env_file:

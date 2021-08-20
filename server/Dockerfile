@@ -1,6 +1,6 @@
 #Dockerfile
 FROM node:14.15.1-alpine
-WORKDIR /app
+WORKDIR /server
 ENV DEBUG=*
 LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
