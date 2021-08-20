@@ -14,6 +14,7 @@ const socket = require('socket.io')
 const path = require('path')
 const app = express() // create express app
 
+
 ///////////////////////////////////////////////////////////////////////
 //--------------- GRAB ALL NETWORK ADAPTERS FIND SERVER IP
 ///////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ for (const name of Object.keys(nets)) {
 }
 console.log("server.js => ", results)
 
+
 // add middlewares
 app.use(express.static(path.join(__dirname, ".", "build")))
 
@@ -44,12 +46,12 @@ app.use(express.static(path.join(__dirname, ".", "build")))
 // PRODUCTION
 
 app.get('/', (req, res) => {
-  console.log("http request received /home");
+  console.log("server.js => http request received /home");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
 app.get('/admin*', (req, res) => {
-  console.log("http request received /admin");
+  console.log("server.js => http request received /admin");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
@@ -62,8 +64,8 @@ app.get('/admin*', (req, res) => {
 //---------------------- ACTIVATE SERVER 
 ///////////////////////////////////////////////////////////////////////
 
-var server = app.listen(settings.SERVER_PORT, () => {
-  console.log("server.js => ", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
+const server = app.listen(settings.SERVER_PORT, '0.0.0.0', () => {
+  console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
 })
 
 //---------PROTOTYPE SEVER REBOOT
@@ -76,7 +78,13 @@ var server = app.listen(settings.SERVER_PORT, () => {
 //------------------- socket setup
 ///////////////////////////////////////////////////////////////////////
 
-var io = socket(server,{allowEIO3: true})
+const io = socket(server, {allowEIO3: true})
+// var io = socket(server, {
+//   cors:{
+//     orgin: 'http://192.168.1.102'
+//   },
+//   allowEIO3: true
+// })
 
 io.on('connection', (socket) => {
     if (socket.handshake.query.clientid) {

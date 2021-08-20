@@ -8,9 +8,12 @@ services:
       dockerfile: ./server/Dockerfile
     volumes:
       - ./server:/usr/src/server
+    ports:
+      - 80:80
     env_file:
       - ./.env.production.local
     network_mode: host
     privileged: true
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    # command: bundle exec thin -d -p 80
