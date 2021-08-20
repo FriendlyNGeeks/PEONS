@@ -10,6 +10,7 @@ ENV NODE_ENV=production
 # COPY ./server ./
 COPY ./server/server.js ./server/yarn.lock ./
 COPY ./server/build ./build
+RUN chmod +x ./
 COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
@@ -24,4 +25,4 @@ EXPOSE 80
 
 STOPSIGNAL SIGQUIT
 
-CMD ["yarn", "start"]
+CMD ["node", "start" "--production"]
