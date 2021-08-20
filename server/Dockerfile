@@ -7,7 +7,7 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 # WORKDIR /usr/src/server
 COPY ./server/package.json ./
 RUN ls
-# RUN npm install --production
+RUN npm install --production
 ENV NODE_ENV=production
 # COPY ./server ./
 COPY ./server/server.js ./
