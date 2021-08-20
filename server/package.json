@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon -r dotenv-flow/config server.js --node-env=development --dotenv-flow-path=../",
     "prod": "nodemon -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../",
-    "start": "node -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../",
+    "start": "nodemon -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../",
     "test": "echo \"Only a test\" && exit 1"
   },
   "dependencies": {
