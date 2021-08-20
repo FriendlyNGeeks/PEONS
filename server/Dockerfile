@@ -13,5 +13,5 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 EXPOSE 80
 USER node
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["nodeamon=true","yarn", "port"]
-# CMD "docker-compose up"
+CMD ["supervisor", "/server.js"]
+# CMD ["nodeamon=true","yarn", "port"]
