@@ -7,7 +7,8 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 COPY ./server/package.json ./
 RUN npm install --production
 ENV NODE_ENV=production
-COPY ./server ./
+# COPY ./server ./
+COPY ./server/server.js ./server/yarn.lock ./server/build ./
 COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
@@ -15,6 +16,11 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # CMD ["supervisor", "/server.js"]
 # RUN yarn
 # RUN yarn add global nodemon
-EXPOSE 80
 ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 80
+
+
+STOPSIGNAL SIGQUIT
+
 CMD ["yarn", "start"]
