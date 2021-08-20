@@ -1,3 +1,3 @@
 #!/bin/sh
 
-npm run port
+nodemon server.js
