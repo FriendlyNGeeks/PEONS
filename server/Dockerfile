@@ -11,5 +11,7 @@ COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 EXPOSE 80
+USER node
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nodeamon=true","yarn", "port"]
+# CMD "docker-compose up"

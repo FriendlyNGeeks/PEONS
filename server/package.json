@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -r dotenv-flow/config server.js --node-env=development --dotenv-flow-path=../",
     "prod": "nodemon -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../",
-    "port": "node -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../"
+    "port": "nodemon -r dotenv-flow/config server.js --node-env=production --dotenv-flow-path=../"
   },
   "dependencies": {
     "dotenv-flow": "^3.2.0",
