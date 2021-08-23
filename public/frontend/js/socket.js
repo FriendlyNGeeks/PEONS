@@ -29,6 +29,8 @@ function makeConnection() {
 /**
  * Get the user IP throught the webkitRTCPeerConnection
  * @param onNewIP {Function} listener function to expose the IP locally
+ * 
+ * navigator.mediaDevices.getUserMedia({ video: true })
  * @return undefined
  */
  function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
