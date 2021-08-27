@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./server/Dockerfile
     volumes:
-      - ./server:/server
+      - ./server:/app
     ports:
       - "7000:7000"
     env_file:

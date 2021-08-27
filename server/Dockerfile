@@ -5,7 +5,7 @@ WORKDIR /app
 LABEL version="0.0.4"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
-COPY package.json .
+COPY package.json ./app
 RUN npm install --production
 ENV NODE_ENV=production
 # COPY . ./
@@ -21,7 +21,7 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # CMD ["supervisor", "/server.js"]
 # RUN yarn
 # RUN yarn add global nodemon
-# WORKDIR /server
+# WORKDIR /app
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 7000
