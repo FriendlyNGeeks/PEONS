@@ -34,7 +34,7 @@ for (const name of Object.keys(nets)) {
         }
     }
 }
-console.log("server.js => ", results)
+console.log("server.js =>", results)
 
 
 // add middlewares
