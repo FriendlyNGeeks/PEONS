@@ -18,13 +18,13 @@ COPY ./server/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # USER node
-# CMD ["supervisor", "/server.js"]
+EXPOSE 7000
 # RUN yarn
 # RUN yarn add global nodemon
 # WORKDIR /app
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["server.js"]
 
-EXPOSE 7000
 
 
 STOPSIGNAL SIGQUIT
