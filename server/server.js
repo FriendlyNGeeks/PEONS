@@ -62,10 +62,10 @@ app.get('/admin*', (req, res) => {
 
 const server = app.listen(port, () => {
   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
-  console.log(`server.js => Server running @  ${settings.SERVER_IP}":${port}!`)
+  console.log(`server.js => Server listening @ ${settings.SERVER_IP}:${port}!`)
 })
 
-// const server = app.listen(settings.SERVER_PORT, () => {
+// const server = app.listen(settings.SERVER_PORT, "0.0.0.0", () => {
 //   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
 //   console.log("server.js =>", "Server running @ "+ settings.SERVER_IP + ":" + settings.SERVER_PORT + '!')
 // })
@@ -90,7 +90,7 @@ const io = socket(server, {allowEIO3: true})
 
 io.on('connection', (socket) => {
     if (socket.handshake.query.clientid) {
-        console.log("server.js =>", "CLIENT CONNECTED: " + socket.handshake.query.clientid)
+        console.log(`server.js => CLIENT CONNECTED: ${socket.handshake.query.clientid}`)
         const client = {
             'Socket_ID': socket.id,
             'Client_IP': socket.handshake.query.clientip, 
@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
       if(socket.handshake.query.clientid) {
         var currentClient = socket.handshake.query.clientid
         clientTable = clientTable.filter(u => u.Socket_ID !== socket.id)
-        console.log("server.js => CLIENT DISCONNECTED: " + socket.handshake.query.clientid)
+        console.log(`server.js => CLIENT DISCONNECTED: ${socket.handshake.query.clientid}`)
         io.sockets.emit('connectionLost', clientTable, currentClient)
       }
       else if(socket.handshake.query.adminid == "pi") {
