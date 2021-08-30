@@ -9,11 +9,9 @@ const settings = {
 let clientTable = []
 
 const express = require('express')
-// const cors = require('cors')
 const socket = require('socket.io')
 const path = require('path')
 const app = express() // create express app
-const port = 80;
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -62,13 +60,8 @@ app.get('/admin*', (req, res) => {
 
 const server = app.listen(settings.SERVER_PORT, () => {
   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
-  console.log(`server.js => Server listening @ ${settings.SERVER_IP}:${port}!`)
+  console.log(`server.js => Server listening @ ${settings.SERVER_IP}:${settings.SERVER_PORT}!`)
 })
-
-// const server = app.listen(settings.SERVER_PORT, "0.0.0.0", () => {
-//   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
-//   console.log("server.js =>", "Server running @ "+ settings.SERVER_IP + ":" + settings.SERVER_PORT + '!')
-// })
 
 //---------PROTOTYPE SEVER REBOOT
 // function severReboot() {
@@ -81,12 +74,6 @@ const server = app.listen(settings.SERVER_PORT, () => {
 ///////////////////////////////////////////////////////////////////////
 
 const io = socket(server, {allowEIO3: true})
-// var io = socket(server, {
-//   cors:{
-//     orgin: 'http://192.168.1.102'
-//   },
-//   allowEIO3: true
-// })
 
 io.on('connection', (socket) => {
     if (socket.handshake.query.clientid) {

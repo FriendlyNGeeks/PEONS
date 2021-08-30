@@ -18,7 +18,7 @@ console.log("socket.js => settings => ", settings)// settings is loaded into win
 
 function makeConnection() {
   // socket = io.connect('http://localhost:1234/')
-  socket = io(settings.SERVER_IP + ':' + settings.SERVER_PORT, {query: clientData} ) // change with your RPi IP address
+  socket = io(window.location.hostname + ':' + settings.SERVER_PORT, {query: clientData} ) // change with your RPi IP address
 }
 
 ///////////////////////////////////////////////////////////////////////
