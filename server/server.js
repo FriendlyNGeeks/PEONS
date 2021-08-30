@@ -13,6 +13,7 @@ const express = require('express')
 const socket = require('socket.io')
 const path = require('path')
 const app = express() // create express app
+const port = 80;
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -59,10 +60,15 @@ app.get('/admin*', (req, res) => {
 //---------------------- ACTIVATE SERVER 
 ///////////////////////////////////////////////////////////////////////
 
-const server = app.listen(settings.SERVER_PORT, () => {
+const server = app.listen(port, () => {
   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
-  console.log("server.js =>", "Server running @ "+ settings.SERVER_IP + ":" + settings.SERVER_PORT + '!')
+  console.log(`server.js => Server running @  ${settings.SERVER_IP}":${port}!`)
 })
+
+// const server = app.listen(settings.SERVER_PORT, () => {
+//   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
+//   console.log("server.js =>", "Server running @ "+ settings.SERVER_IP + ":" + settings.SERVER_PORT + '!')
+// })
 
 //---------PROTOTYPE SEVER REBOOT
 // function severReboot() {
