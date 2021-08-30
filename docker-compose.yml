@@ -6,8 +6,6 @@ services:
     build:
       context: .
       dockerfile: ./server/Dockerfile
-    # volumes:
-    #   - ./server:/app
     ports:
       - "80:80"
     env_file:
@@ -15,6 +13,5 @@ services:
     privileged: true
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    # restart: always
-    # command: bundle exec thin -d -p 80
-    network_mode: bridge
+    restart: always
+    network_mode: host # console shows device ip HOST
