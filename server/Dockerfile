@@ -6,23 +6,18 @@ LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
 # ENV DEBUG=*
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY package*.json /usr/src/app/
+COPY package.json /usr/src/app/
 RUN npm install --production
 ENV NODE_ENV=production
-# COPY . ./
-# COPY ./server/server.js ./server
-# COPY ./server/yarn.lock ./server
-# WORKDIR /app/server
-COPY ./server /usr/src/app/
+COPY ./server /usr/src/app
 # RUN chmod +x ./server
 # COPY ./server/docker-entrypoint.sh /usr/local/bin/
 # RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # USER node
-EXPOSE 7000
+EXPOSE 80
 # ENTRYPOINT ["/entrypoint.sh"]
-CMD ["npm","start"]
+CMD [ "npm", "start" ]
 
-STOPSIGNAL SIGQUIT
-
+# STOPSIGNAL SIGQUIT
 # CMD ["node", "start" "--production"]
