@@ -1,11 +1,12 @@
 #Dockerfile
 FROM node:14.15.1-alpine
-WORKDIR /usr/src/app
-# ENV DEBUG=*
 LABEL version="0.0.5"
 LABEL description="Pi Express.js socket.IO Node.js System"
 LABEL maintainer="friendlyneighborhoodgeeks@gmail.com"
-COPY package.json ./app
+# ENV DEBUG=*
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY package*.json .
 RUN npm install --production
 ENV NODE_ENV=production
 # COPY . ./
@@ -14,18 +15,13 @@ ENV NODE_ENV=production
 # WORKDIR /app/server
 COPY ./server .
 # RUN chmod +x ./server
-COPY ./server/docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
+# COPY ./server/docker-entrypoint.sh /usr/local/bin/
+# RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 # USER node
 EXPOSE 7000
-# RUN yarn
-# RUN yarn add global nodemon
-# WORKDIR /app
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["server.js"]
-
-
+# ENTRYPOINT ["/entrypoint.sh"]
+CMD ["npm","start"]
 
 STOPSIGNAL SIGQUIT
 

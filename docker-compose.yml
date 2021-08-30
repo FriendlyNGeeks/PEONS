@@ -6,8 +6,8 @@ services:
     build:
       context: .
       dockerfile: ./server/Dockerfile
-    volumes:
-      - ./server:/app
+    # volumes:
+    #   - ./server:/app
     ports:
       - "7000:7000"
     env_file:
@@ -17,4 +17,4 @@ services:
     tty: true        # docker run -t
     restart: always
     # command: bundle exec thin -d -p 80
-    network_mode: host
+    network_mode: bridge
