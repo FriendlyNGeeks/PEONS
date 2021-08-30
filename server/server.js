@@ -46,8 +46,8 @@ app.use(express.static(path.join(__dirname, ".", "build")))
 ////////////////////////////////////////////
 // PRODUCTION
 
-app.get('/', (req, res) => {
-  console.log("server.js => http request received /client");
+app.get('/monitor*', (req, res) => {
+  console.log("server.js => http request received /monitor");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
 
@@ -60,7 +60,7 @@ app.get('/admin*', (req, res) => {
 //---------------------- ACTIVATE SERVER 
 ///////////////////////////////////////////////////////////////////////
 
-const server = app.listen(port, () => {
+const server = app.listen(settings.SERVER_PORT, () => {
   // console.log("server.js =>", "Server running @ "+ Object.values(results)[0] + " on port: " + settings.SERVER_PORT + '!')
   console.log(`server.js => Server listening @ ${settings.SERVER_IP}:${port}!`)
 })
