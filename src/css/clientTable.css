@@ -5,3 +5,8 @@
   width: 50%;
   overflow-y: scroll;
 }
+
+#clientTable > ul > li > a, a:link, a:visited {
+  text-decoration: none;
+  color:inherit;
+}

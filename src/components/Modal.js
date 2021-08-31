@@ -1,18 +1,12 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default class Modal extends Component {
-  // constructor(props){
-  //   super(props)
-  //   //----- initialize state here
-  //   this.state = {
-  //     settings: passBall,
-  //   }
-  // }
-  componentDidMount() {
-    console.log('React Modal Component mounted')
-  }
-  render() {
-    return (
+
+function Modal() {
+  
+   const [colortxt, setColortxt] = useState("#FFFFFF")
+   const [colorbg, setColorbg] = useState("#000000")
+
+  return (
     <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div className="modal-content">
@@ -48,8 +42,7 @@ export default class Modal extends Component {
                                 <i className="fas fa-paint-brush"></i>
                                 </div>
                             </div>
-                            <input id="txtcolor" type="color" className="form-control form-control-lg" 
-                            value="#FFFFFF"/> 
+                            <input id="txtcolor" type="color" className="form-control form-control-lg" value={colortxt} onChange={e => setColortxt(e.target.value)} />
                         </div>
                     </div>
                 </div>
@@ -98,8 +91,7 @@ export default class Modal extends Component {
                                 <i className="fas fa-paint-roller"></i>
                                 </div>
                             </div>
-                            <input id="bgcolor" type="color" className="form-control form-control-lg" 
-                            value="#000000"/>
+                            <input id="bgcolor" type="color" className="form-control form-control-lg" value={colorbg} onChange={e => setColorbg(e.target.value)} />
                         </div>
                     </div>
                 </div>
@@ -115,6 +107,6 @@ export default class Modal extends Component {
             </div>
         </div>
     </div>
-    )
-  };
+  );
 }
+export default Modal

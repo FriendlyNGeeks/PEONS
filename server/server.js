@@ -34,6 +34,7 @@ for (const name of Object.keys(nets)) {
     }
 }
 console.log("server.js =>", results)
+settings.SERVER_HOST = Object.values(results)[0][0]
 
 
 // add middlewares
@@ -93,7 +94,7 @@ io.on('connection', (socket) => {
     }
     else if (socket.handshake.query.adminid == "pi" && socket.handshake.query.hangup == 1) {
         console.log("server.js => CLIENT CONNECTED: Admin")
-        io.sockets.emit('connectionAdmin', clientTable)
+        io.sockets.emit('connectionAdmin', clientTable, settings.SERVER_HOST)
     }
 
   

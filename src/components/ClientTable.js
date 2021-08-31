@@ -7,10 +7,12 @@ const socket = io(process.env.REACT_APP_SERVER_IP + ":" + process.env.REACT_APP_
 function ClientTable() {
   
   const [clientTable, setTable] = useState([])
+  const [serverHost, setHostIP] = useState(null)
       
   useEffect(() => {
-    socket.on("connectionAdmin", (payload) => {
+    socket.on("connectionAdmin", (payload, host) => {
       setTable(payload)
+      setHostIP(host)
     })
     socket.on("connectionMade",(payload, currentID) => {
       setTable(payload)
@@ -22,12 +24,13 @@ function ClientTable() {
 
   return (
     <div id="clientTable">
+        <span>Server listening @ {serverHost}</span>
         <h2>
             Client Table | Active Clients: {clientTable.length}
         </h2>
         <ul>
             {clientTable.map((client, index) => (
-                <li key={client.Username}>Client: {client.Username} Section: {client.Section} IPv4: {client.Client_IP}</li>
+                <li key={client.Username}><a target="_blank" href={'http://' + client.Client_IP} rel="noreferrer">Client: {client.Username} Section: {client.Section} IPv4: {client.Client_IP}</a></li>
             ))}
         </ul>
     </div>
