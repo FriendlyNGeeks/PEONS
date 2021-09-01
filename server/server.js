@@ -18,24 +18,33 @@ const app = express() // create express app
 //--------------- GRAB ALL NETWORK ADAPTERS FIND SERVER IP
 ///////////////////////////////////////////////////////////////////////
 
-const { networkInterfaces } = require('os')
-const nets = networkInterfaces()
-let results = [] // Or just '{}', an empty object
+function getHostIP(reqAdmin) {
 
-for (const name of Object.keys(nets)) {
-    for (const net of nets[name]) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        if (net.family === 'IPv4' && !net.internal) {
-            if (!results[name]) {
-                results[name] = []
-            }
-            results[name].push(net.address)
-        }
-    }
+  const { networkInterfaces } = require('os')
+  const nets = networkInterfaces()
+  let results = [] // Or just '{}', an empty object
+
+  for (const name of Object.keys(nets)) {
+      for (const net of nets[name]) {
+          // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+          if (net.family === 'IPv4' && !net.internal) {
+              if (!results[name]) {
+                  results[name] = []
+              }
+              results[name].push(net.address)
+          }
+      }
+  }
+  if (reqAdmin !== true) {
+    console.log("server.js =>", results)
+  }
+  else {
+    console.log("server.js => New Host IP: http://"+ Object.values(results)[0][0])
+  }
+  settings.SERVER_HOST = Object.values(results)[0][0]
 }
-console.log("server.js =>", results)
-settings.SERVER_HOST = Object.values(results)[0][0]
-
+// CALL TO GET SERVER HOST IP
+getHostIP()
 
 // add middlewares
 app.use(express.static(path.join(__dirname, ".", "build")))
@@ -51,6 +60,8 @@ app.get('/monitor*', (req, res) => {
 });
 
 app.get('/admin*', (req, res) => {
+  var reqAdmin = true
+  getHostIP(reqAdmin);
   console.log("server.js => http request received /admin");
   res.sendFile(path.join(__dirname, ".", "build", "index.html"));
 });
