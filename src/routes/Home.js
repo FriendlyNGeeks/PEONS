@@ -19,16 +19,18 @@ export default class Home extends Component {
   }
   render() {
     return (
+      <>
       <div>
         <h1 className="mt-4">
-        <i className="iconify" data-icon="logos-raspberry-pi" data-inline="true"></i>
+          <i className="iconify" data-icon="logos-raspberry-pi" data-inline="true"></i>
         Controlled Running Text
-    </h1>
-    <b>Raspberry Pi + Express.js + Socket.io</b>
-    <div>
-      <h1>PLEASE CHECK URL</h1>
-    </div>
+        </h1>
+        <b>Raspberry Pi + Express.js + Socket.io</b>
+        <div>
+          <h1>PLEASE CHECK URL</h1>
+        </div>
       </div>
+      </>
     )
   };
 }
