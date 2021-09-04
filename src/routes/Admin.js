@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ClientTable, Marquee, Modal } from '../components/index';
+import { HeaderAdmin, ClientTable, Marquee, Modal } from '../components/index';
 import { appendScript } from '../utils/appendScript'
 
 export default class Admin extends Component {
@@ -18,21 +18,7 @@ export default class Admin extends Component {
   render() {
     return (
       <>
-      <h1 className="mt-4">
-          <i className="iconify" data-icon="logos-raspberry-pi" data-inline="true"></i>
-          Notify | Admin Dashboard
-      </h1>
-      <b>Raspberry Pi + Express.js + Socket.io</b>
-
-      {/* <!-- Button trigger modal --> */}
-      <br></br>
-      <button type="button" className="mt-3 btn-sm btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-          <i className="fas fa-cog"></i>&nbsp;
-          Settings
-      </button>
-      <button type="button" id="resetAll" className="mt-3 btn-sm btn btn-success">
-        RESET ALL
-      </button>
+      <HeaderAdmin />
       <Modal />
       <ClientTable />
       <Marquee />

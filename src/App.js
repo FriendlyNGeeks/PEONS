@@ -1,6 +1,6 @@
 import React from "react"
 import "./css/styles.css"
-
+import Routes from "./Routes"
 
 function App() {
   

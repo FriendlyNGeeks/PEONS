@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { HeaderMonitor, Marquee } from '../components/index';
 import { appendScript } from '../utils/appendScript'
 
 export default class Home extends Component {
@@ -14,26 +15,16 @@ export default class Home extends Component {
     console.log('Monitor.js => ', process.env.REACT_APP_SERVER_IP);
     window.settings = {
       SERVER_IP : process.env.REACT_APP_SERVER_IP,
-      SERVER_PORT : process.env.REACT_APP_SERVER_PORT,
-      USER : process.env.REACT_APP_USER
+      SERVER_PORT : process.env.REACT_APP_SERVER_PORT
     }
     appendScript("/frontend/js/socket.js");
   }
   render() {
     return (
-      <div>
-        <h1 className="mt-4">
-        <i className="iconify" data-icon="logos-raspberry-pi" data-inline="true"></i>
-        Controlled Running Text
-    </h1>
-    <b>Raspberry Pi + Express.js + Socket.io</b>
-    {/* <!-- scrollamount = 5 slow, 13 medium, 20 fast --> */}
-    <div id="output">
-        <marquee id="text" scrollamount="13" style={{fontSize: 250}}>
-            Raspberry Pi Running Text
-        </marquee>
-    </div>
-      </div>
+    <>
+    <HeaderMonitor />
+    <Marquee />
+    </>
     )
   };
 }
