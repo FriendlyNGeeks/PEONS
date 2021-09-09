@@ -36,25 +36,55 @@ if(settings.adminCalls != 1) {
 ///////////////////////////////////////////////////////////////////////
 //------------------ START FRONT END SOCKET IO LOGIC-------------
 ///////////////////////////////////////////////////////////////////////
+function additup() {
+    let hh = parseInt(document.getElementById('durationHR').value, 10) * 60 * 60
+    let mm = parseInt(document.getElementById('durationMIN').value, 10) * 60
+    let ss = parseInt(document.getElementById('durationSEC').value, 10)
+    let convert_ms = (hh + mm + ss) * 1000
+    let duration = convert_ms
+    return duration
+}
 
+function rgbConvert(hex) {
+    const color = hex
+    const r = parseInt(color.substr(1,2), 16)
+    const g = parseInt(color.substr(3,2), 16)
+    const b = parseInt(color.substr(5,2), 16)
+    return [r,g,b]
+}
+
+function socketSendPayload() {
+    socket.emit('chat', {
+        message: message.value,
+        speed: speed.value,
+        txtcolor: rgbConvert(txtcolor.value),
+        bgcolor: rgbConvert(bgcolor.value),
+        font: font.value,
+        duration: additup()
+    })
+}
 
 // socket.emit('client connected', settings.USER);
 
 // emit button click events
 send.addEventListener('click', () => {
-    socket.emit('chat', {
-        message: message.value,
-        speed: speed.value,
-        txtcolor: txtcolor.value,
-        bgcolor: bgcolor.value,
-        font: font.value,
-    })
+    socketSendPayload()
 })
 
-// emit keypress input events: "Lintang is typing..."
+// emit keypress input events: "Admin is typing..."
 message.addEventListener('input', (messageValue) => {
     console.log('watching for typing '+ messageValue.target.value)
     socket.emit('typing', messageValue.target.value)
+})
+
+message.addEventListener('keyup', (e) => {
+    // Number 13 is the "Enter" key on the keyboard
+  if (e.keyCode === 13) {
+    // Cancel the default action, if needed
+    e.preventDefault();
+    // Trigger the button element with a click
+    socketSendPayload()
+  }
 })
 
 resetAll.addEventListener('click', () => {
@@ -68,12 +98,12 @@ resetAll.addEventListener('click', () => {
 //------------------------- listen for events
 ///////////////////////////////////////////////////////////////////////
 socket.on('chat', (data) => {
-    output.innerHTML = `
-    <marquee scrollamount=${data.speed} 
-    style="font-size:250px; font-family:${data.font}; color:${data.txtcolor}; background-color:${data.bgcolor}">
-        ${data.message}
-    </marquee>
-    `
+    // output.innerHTML = `
+    // <marquee scrollamount=${data.speed} 
+    // style="font-size:250px; font-family:${data.font}; color:${data.txtcolor}; background-color:${data.bgcolor}">
+    //     ${data.duration}${data.message}
+    // </marquee>
+    // `
     feedback.innerHTML = ''
 })
 

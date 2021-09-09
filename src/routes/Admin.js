@@ -21,7 +21,7 @@ export default class Admin extends Component {
       <HeaderAdmin />
       <Modal />
       <ClientTable />
-      <Marquee />
+      <Marquee/>
       </>
     )
   };

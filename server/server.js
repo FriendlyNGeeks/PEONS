@@ -7,11 +7,16 @@ const settings = {
 }
 
 let clientTable = []
+function Queue() {
+  this.elements = [];
+}
+
 
 const express = require('express')
 const socket = require('socket.io')
 const path = require('path')
 const app = express() // create express app
+let currentPayload = null
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -87,7 +92,7 @@ const server = app.listen(settings.SERVER_PORT, () => {
 
 const io = socket(server, {allowEIO3: true})
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
     if (socket.handshake.query.clientid) {
         console.log(`server.js => CLIENT CONNECTED: ${socket.handshake.query.clientid}`)
         const client = {
@@ -101,6 +106,13 @@ io.on('connection', (socket) => {
             clientTable.push(client)
             console.log("server.js => ", JSON.stringify(clientTable))
         }
+        // BACKFILL NEW CLIENTS
+        io.of("/").adapter.on("join-room", (room, id) => {
+          if (currentPayload) {
+            io.to(id).emit('chat', currentPayload)
+          }
+        })
+
         io.sockets.emit('connectionMade', clientTable, currentClient)
     }
     else if (socket.handshake.query.adminid == "pi" && socket.handshake.query.hangup == 1) {
@@ -121,7 +133,12 @@ io.on('connection', (socket) => {
       }
   })
 
+  Queue.prototype.enqueue = (e) => {
+    this.elements.push(e);
+  };
+
   socket.on('chat', (data) => {
+      currentPayload = data
       io.sockets.emit('chat', data)
   })
 

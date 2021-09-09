@@ -3,5 +3,6 @@ export { default as HeaderHome } from './HeaderHome';
 export { default as HeaderMonitor } from './HeaderMonitor';
 export { default as ClientTable } from './ClientTable';
 export { default as ColorPicker } from './ColorPicker';
+export { default as DurationPicker } from './DurationPicker';
 export { default as Marquee } from './Marquee';
 export { default as Modal } from './Modal';

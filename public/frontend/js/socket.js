@@ -5,6 +5,7 @@
 //**** UNICODE CONVERT TO JS/JAVA/C (https://r12a.github.io/app-conversion/) with options [(X)C-style][(X)\n etc] */
 console.log("%c\n\n\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2557   \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\n\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255D\n\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2557 \u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\n\u2588\u2588\u2554\u2550\u2550\u2550\u255D \u2588\u2588\u2554\u2550\u2550\u255D  \u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2551\u255A\u2588\u2588\u2557\u2588\u2588\u2551\u255A\u2550\u2550\u2550\u2550\u2588\u2588\u2551\n\u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u255A\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255D\u2588\u2588\u2551 \u255A\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\n\u255A\u2550\u255D     \u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D \u255A\u2550\u2550\u2550\u2550\u2550\u255D \u255A\u2550\u255D  \u255A\u2550\u2550\u2550\u255D\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u255D\n\nTip: you can access the documentation `theme` object directly in the console.\n","font-family:monospace;color:#1976d2;font-size:12px;")
 
+// SOCKET.IO.JS <SCRIPT> IN INDEXT.HTML
 // Declare socket for client side connection/listen events
 var socket = io()
 
@@ -17,7 +18,6 @@ console.log("socket.js => settings => ", settings)// settings is loaded into win
 ///////////////////////////////////////////////////////////////////////
 
 function makeConnection() {
-  // socket = io.connect('http://localhost:1234/')
   socket = io(window.location.hostname + ':' + settings.SERVER_PORT, {query: clientData} ) // change with your RPi IP address
 }
 
@@ -188,21 +188,12 @@ function getAllUrlParams(url) {
 
 
 //-------------------- EXECUTE ON TRIGGERED LISTEN EVENT
-
-
-socket.on('chat', (data) => {
-    output.innerHTML = `
-    <marquee scrollamount=${data.speed} 
-    style="font-size:250px; font-family:${data.font}; color:${data.txtcolor}; background-color:${data.bgcolor}">
-        ${data.message}
-    </marquee>
-    `
-    feedback.innerHTML = ''
+socket.on('connectionMade', (data) => {
+  // console.log("connectionmade")
 })
-
 socket.on('resetAll',() => {
   console.log("dont reset us")
-  location.reload();
+  window.location.reload();
 })
 
 // socket.on('typing', (data) => {

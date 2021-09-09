@@ -1,17 +1,45 @@
 import React, { useState, useEffect } from 'react'
+import ReactFastMarquee from 'react-fast-marquee'
+
+const socket = io(process.env.REACT_APP_SERVER_IP + ":" + process.env.REACT_APP_SERVER_PORT)
 
 function Marquee() {
   
-  const [color, setColor] = useState(null)
+  const [msg, setMsg] = useState(['PEONS Notification Text'])
+  const [txtFont, setTxtFont] = useState(['Anonymous Pro'])
+  const [txtColor, setTxtColor] = useState([0,0,0])
+  const [gradColor, setGradColor] = useState([255,255,255])
+  const [bgColor, setBgColor] = useState([null])
+  const [speed, setSpeed] = useState([100])
+  const gradientWidth = useState('100px')
+  const gradientBool = useState([false])
+  
+  useEffect(() => {
+    socket.on("chat", (payload) => {
+      setMsg(payload.message)
+      setTxtFont(payload.font)
+      setTxtColor(payload.txtcolor)
+      setBgColor(payload.bgcolor)
+      setGradColor(payload.bgcolor)
+      setSpeed(payload.speed)
+    })
+  })
       
   return (
     <>
-    {/* <!-- scrollamount = 5 slow, 13 medium, 20 fast --> */}
-  <div id="output">
-      <marquee id="text" scrollamount="13" style={{fontSize: 250}}>
-          Raspberry Pi Running Text {process.env.REACT_APP_SERVER_IP}
-      </marquee>
-  </div>
+    <ReactFastMarquee speed={speed} gradient={gradientBool} gradientColor={gradColor} gradientWidth={gradientWidth}>
+      {bgColor ? 
+        <div style={{width:'100%', backgroundColor: 'rgb('+bgColor[0]+','+bgColor[1]+','+bgColor[2]+')'}}>
+          <div id="text" style={{padding:'0 200px', fontSize: 250, fontFamily: txtFont, color: 'rgb('+txtColor[0]+','+txtColor[1]+','+txtColor[2]+')'}}>
+          {msg}
+          </div>
+        </div> :
+        <div style={{width:'100%', backgroundColor: 'none'}}>
+          <div id="text" style={{padding:'0 200px', fontSize: 250, fontFamily: txtFont, color: 'rgb('+txtColor[0]+','+txtColor[1]+','+txtColor[2]+')'}}>
+          {msg}
+          </div>
+        </div>}
+    </ReactFastMarquee>
     </>
   );
 }

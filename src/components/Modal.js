@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import DurationPicker from './DurationPicker'
 
 
 function Modal() {
   
    const [colortxt, setColortxt] = useState("#FFFFFF")
    const [colorbg, setColorbg] = useState("#000000")
+   const [hours, setHR] = useState("0")
 
   return (
     <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -77,9 +79,9 @@ function Modal() {
                                 </div>
                             </div>
                             <select id="speed" className="form-control form-control-lg">
-                                <option value="18">Medium</option>
-                                <option value="5">Slow</option>
-                                <option value="32">Fast</option>
+                                <option value="100">Medium</option>
+                                <option value="50">Slow</option>
+                                <option value="200">Fast</option>
                             </select>    
                         </div>
                     </div>
@@ -94,6 +96,10 @@ function Modal() {
                             <input id="bgcolor" type="color" className="form-control form-control-lg" value={colorbg} onChange={e => setColorbg(e.target.value)} />
                         </div>
                     </div>
+                </div>
+                <div className="row">
+                    {/* <!-- duration settings --> */}
+                    <DurationPicker />        
                 </div>
                 <div id="feedback"></div>
 

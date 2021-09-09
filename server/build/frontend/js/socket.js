@@ -17,7 +17,6 @@ console.log("socket.js => settings => ", settings)// settings is loaded into win
 ///////////////////////////////////////////////////////////////////////
 
 function makeConnection() {
-  // socket = io.connect('http://localhost:1234/')
   socket = io(window.location.hostname + ':' + settings.SERVER_PORT, {query: clientData} ) // change with your RPi IP address
 }
 
@@ -188,21 +187,12 @@ function getAllUrlParams(url) {
 
 
 //-------------------- EXECUTE ON TRIGGERED LISTEN EVENT
-
-
-socket.on('chat', (data) => {
-    output.innerHTML = `
-    <marquee scrollamount=${data.speed} 
-    style="font-size:250px; font-family:${data.font}; color:${data.txtcolor}; background-color:${data.bgcolor}">
-        ${data.message}
-    </marquee>
-    `
-    feedback.innerHTML = ''
+socket.on('connectionMade', (data) => {
+  // console.log("connectionmade")
 })
-
 socket.on('resetAll',() => {
   console.log("dont reset us")
-  location.reload();
+  window.location.reload();
 })
 
 // socket.on('typing', (data) => {
