@@ -11,8 +11,8 @@ function Marquee() {
   const [gradColor, setGradColor] = useState([255,255,255])
   const [bgColor, setBgColor] = useState([null])
   const [speed, setSpeed] = useState([100])
-  const gradientWidth = useState('100px')
-  const gradientBool = useState([false])
+  const gradientFill = useState(['0'])
+  const gradientBool = useState(['false'])
   
   useEffect(() => {
     socket.on("chat", (payload) => {
@@ -27,7 +27,7 @@ function Marquee() {
       
   return (
     <>
-    <ReactFastMarquee speed={speed} gradient={gradientBool} gradientColor={gradColor} gradientWidth={gradientWidth}>
+    <ReactFastMarquee speed={speed} gradient={gradientBool[0]} gradientColor={gradColor} gradientWidth={gradientFill[0]}>
       {bgColor ? 
         <div style={{width:'100%', backgroundColor: 'rgb('+bgColor[0]+','+bgColor[1]+','+bgColor[2]+')'}}>
           <div id="text" style={{padding:'0 200px', fontSize: 250, fontFamily: txtFont, color: 'rgb('+txtColor[0]+','+txtColor[1]+','+txtColor[2]+')'}}>

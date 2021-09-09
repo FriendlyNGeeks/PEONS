@@ -138,6 +138,7 @@ io.on('connection', socket => {
   };
 
   socket.on('chat', (data) => {
+      //Used to backfill new clients
       currentPayload = data
       io.sockets.emit('chat', data)
   })

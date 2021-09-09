@@ -24,7 +24,6 @@ var socket = io()
 ///////////////////////////////////////////////////////////////////////
 
 function makeConnection(payload) {
-    // socket = io.connect('http://localhost:1234/')
     socket = io(window.location.hostname + ':' + settings.SERVER_PORT, {query: payload} ) // change with your RPi IP address                
 }
 
