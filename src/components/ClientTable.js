@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import io from "socket.io-client"
 import "../css/clientTable.css"
 
-const socket = io(process.env.REACT_APP_SERVER_IP + ":" + process.env.REACT_APP_SERVER_PORT)
+const componentName = {reactComponentName:'clientTable'}
+const componentData = componentName
+const socket = io(window.location.host + ":" + process.env.REACT_APP_SERVER_PORT, {query: componentData})
 
 function ClientTable() {
   

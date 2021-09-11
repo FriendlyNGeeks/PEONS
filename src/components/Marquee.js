@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactFastMarquee from 'react-fast-marquee'
 
-const socket = io(process.env.REACT_APP_SERVER_IP + ":" + process.env.REACT_APP_SERVER_PORT)
+const componentName = {reactComponentName:'marquee'}
+const componentData = componentName
+const socket = io(window.location.host + ":" + process.env.REACT_APP_SERVER_PORT, {query: componentData})
 
 function Marquee() {
   

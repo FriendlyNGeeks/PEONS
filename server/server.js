@@ -92,7 +92,19 @@ const server = app.listen(settings.SERVER_PORT, () => {
 
 const io = socket(server, {allowEIO3: true})
 
-io.on('connection', socket => {
+io.on('connection', async (socket) => {
+    function fetchUserId(socket) {
+      return socket.id
+    }
+    function sendBackFill() {
+      if (currentPayload) {
+        console.log("server.js => send currentPayLoad to: " + socket.handshake.query.reactComponentName)
+        io.to(clientId).emit('chat', currentPayload)
+      }
+    }
+
+    const clientId = await fetchUserId(socket)
+
     if (socket.handshake.query.clientid) {
         console.log(`server.js => CLIENT CONNECTED: ${socket.handshake.query.clientid}`)
         const client = {
@@ -106,54 +118,48 @@ io.on('connection', socket => {
             clientTable.push(client)
             console.log("server.js => ", JSON.stringify(clientTable))
         }
-        // BACKFILL NEW CLIENTS
-        io.of("/").adapter.on("join-room", (room, id) => {
-          if (currentPayload) {
-            io.to(id).emit('chat', currentPayload)
-          }
-        })
-
+        
         io.sockets.emit('connectionMade', clientTable, currentClient)
     }
     else if (socket.handshake.query.adminid == "pi" && socket.handshake.query.hangup == 1) {
         console.log("server.js => CLIENT CONNECTED: Admin")
         io.sockets.emit('connectionAdmin', clientTable, settings.SERVER_HOST)
+    }else if (socket.handshake.query.reactComponentName == "marquee") {
+      await sendBackFill(socket)
     }
 
-  
-  socket.on("disconnect", (reason) => {
-      if(socket.handshake.query.clientid) {
-        var currentClient = socket.handshake.query.clientid
-        clientTable = clientTable.filter(u => u.Socket_ID !== socket.id)
-        console.log(`server.js => CLIENT DISCONNECTED: ${socket.handshake.query.clientid}`)
-        io.sockets.emit('connectionLost', clientTable, currentClient)
-      }
-      else if(socket.handshake.query.adminid == "pi") {
-        console.log("server.js => CLIENT DISCONNECTED: Admin")
-      }
-  })
+    socket.on("disconnect", (reason) => {
+        if(socket.handshake.query.clientid) {
+          var currentClient = socket.handshake.query.clientid
+          clientTable = clientTable.filter(u => u.Socket_ID !== socket.id)
+          console.log(`server.js => CLIENT DISCONNECTED: ${socket.handshake.query.clientid}`)
+          io.sockets.emit('connectionLost', clientTable, currentClient)
+        }
+        else if(socket.handshake.query.adminid == "pi") {
+          console.log("server.js => CLIENT DISCONNECTED: Admin")
+        }
+    })
+    // ---------Template queue waiting event box ---------//
+    Queue.prototype.enqueue = (e) => {
+      this.elements.push(e);
+    };
 
-  Queue.prototype.enqueue = (e) => {
-    this.elements.push(e);
-  };
-
-  socket.on('chat', (data) => {
+    socket.on('chat', (data) => {
       //Used to backfill new clients
       currentPayload = data
       io.sockets.emit('chat', data)
-  })
-
-  socket.on('resetAll', () => {
-    io.sockets.emit('resetAll')
-})
-
-  // broadcast message to another client
-  socket.on('typing', (data) => {
+    })
+    // Sync all monitors/clients
+    socket.on('resetAll', () => {
+      io.sockets.emit('resetAll')
+    })
+    // broadcast message to another client
+    socket.on('typing', (data) => {
       socket.broadcast.emit('typing', data)
       console.log('Messeage input: '+ data)
-  })
-  // broadcase to other clients to clear USER TYPING
-  socket.on('typingStopped', (data) => {
+    })
+    // broadcase to other clients to clear USER TYPING
+    socket.on('typingStopped', (data) => {
       socket.broadcast.emit('typingStopped', data)
-  })
+    })
 })
