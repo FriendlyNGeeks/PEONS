@@ -58,6 +58,10 @@ app.use(express.static(path.join(__dirname, ".", "build")))
 //-------- USED TO REDIRECT ALL REQUEST TO INDEX FOR REACT ROUTER
 ////////////////////////////////////////////
 // PRODUCTION
+app.get('/status', (req, res) => {
+  console.log("server.js => http request received /status");
+  res.sendStatus(200);
+});
 
 app.get('/monitor*', (req, res) => {
   console.log("server.js => http request received /monitor");
